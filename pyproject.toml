@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hcnet-thermal-picture"
+version = "0.1.0"
+description = "Hikvision thermal camera capture helper"
+requires-python = ">=3.8"
+
+[tool.setuptools]
+py-modules = ["hcnet_thermal_picture"]
