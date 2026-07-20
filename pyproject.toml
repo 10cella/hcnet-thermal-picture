@@ -9,4 +9,7 @@ description = "Hikvision thermal camera capture helper"
 requires-python = ">=3.8"
 
 [tool.setuptools]
-py-modules = ["hcnet_thermal_picture"]
+packages = ["hcnet_thermal_picture"]
+
+[tool.setuptools.package-data]
+hcnet_thermal_picture = ["*.so"]

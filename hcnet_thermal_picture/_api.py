@@ -34,7 +34,12 @@ class CaptureResult:
 
 
 def _load_lib() -> ctypes.CDLL:
-    lib_path = Path(__file__).with_name("libhcnet_thermal_picture.so")
+    package_dir = Path(__file__).resolve().parent
+    for sdk_path in sorted(package_dir.glob("*.so")):
+        if sdk_path.name != "libhcnet_thermal_picture.so":
+            ctypes.CDLL(str(sdk_path), mode=ctypes.RTLD_GLOBAL)
+
+    lib_path = package_dir / "libhcnet_thermal_picture.so"
     return ctypes.CDLL(str(lib_path))
 
 

@@ -22,7 +22,7 @@ make
 ### 3. Python 安装
 
 ```bash
-uv pip install .
+python -m pip install .
 ```
 
 或者构建 wheel：
