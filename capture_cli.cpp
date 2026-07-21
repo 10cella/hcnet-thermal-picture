@@ -11,7 +11,7 @@ struct Args {
     int port = 8000;
     std::string user = "admin";
     std::string password = "abcd1234";
-    int channel = 2;
+    int channel = 1;
     std::string output_dir = "./output";
 };
 
