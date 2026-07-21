@@ -17,23 +17,17 @@ https://open.hikvision.com/download/5cda567cf47ae80dd41a54b3?type=10&id=5cda5902
 make
 ```
 
-生成 `libhcnet_thermal_picture.so`。
+生成 `hcnet_capture_cli`。它通过当前目录的 `lib/` 加载海康 SDK。
 
-### 3. Python 安装
-
-```bash
-python -m pip install .
-```
-
-或者构建 wheel：
+### 3. Python 调用
 
 ```bash
-make wheel
+./venv/bin/python -c 'from hcnet_thermal_picture import capture_picture; print(len(capture_picture()))'
 ```
 
-安装后可直接：
+`capture_picture()` 在临时目录中调用当前项目根目录的 `hcnet_capture_cli`，读取其生成的 JPG 并返回 `bytes`：
 
 ```python
 from hcnet_thermal_picture import capture_picture
-result = capture_picture()
+jpeg = capture_picture()
 ```

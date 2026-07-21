@@ -1,25 +1,28 @@
 CXX ?= g++
-CXXFLAGS ?= -Wall -Wextra -O2 -fPIC
+CXXFLAGS ?= -Wall -Wextra -O2
 INCLUDES = -Iinclude
-LDFLAGS = -Llib -Wl,-rpath,'$$ORIGIN'
+LDFLAGS = -Llib -Wl,-rpath,'$$ORIGIN/lib'
 LDLIBS = -lhcnetsdk
 
-LIB_TARGET = hcnet_thermal_picture/libhcnet_thermal_picture.so
+CLI_TARGET = hcnet_capture_cli
 SDK_LIBS = $(wildcard lib/*.so)
+SDK_COMPONENT_LIBS = $(wildcard lib/HCNetSDKCom/*.so)
 
-all: $(LIB_TARGET)
+all: $(CLI_TARGET)
 
-$(LIB_TARGET): main.cpp
-	mkdir -p hcnet_thermal_picture
-	$(CXX) $(CXXFLAGS) -shared $(INCLUDES) -o $@ $< $(LDFLAGS) $(LDLIBS)
+$(CLI_TARGET): capture_cli.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $< $(LDFLAGS) $(LDLIBS)
 
-wheel: $(LIB_TARGET) $(SDK_LIBS) pyproject.toml hcnet_thermal_picture/__init__.py hcnet_thermal_picture/_api.py
+wheel: $(CLI_TARGET) $(SDK_LIBS) $(SDK_COMPONENT_LIBS) pyproject.toml hcnet_thermal_picture/__init__.py hcnet_thermal_picture/_api.py
 	cp $(SDK_LIBS) hcnet_thermal_picture/
+	mkdir -p hcnet_thermal_picture/HCNetSDKCom
+	cp $(SDK_COMPONENT_LIBS) hcnet_thermal_picture/HCNetSDKCom/
 	python -m pip wheel . -w dist
 
 clean:
-	rm -f $(LIB_TARGET)
+	rm -f $(CLI_TARGET)
 	rm -f hcnet_thermal_picture/*.so
+	rm -rf hcnet_thermal_picture/HCNetSDKCom
 	rm -rf build dist *.egg-info
 
 .PHONY: all clean wheel

@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+hcnet_capture_cli
 
 # Distribution / packaging
 .Python
@@ -218,4 +219,3 @@ __marimo__/
 .streamlit/secrets.toml
 
 include
-
