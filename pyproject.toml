@@ -7,6 +7,7 @@ name = "hcnet-thermal-picture"
 version = "0.1.0"
 description = "Hikvision thermal camera capture helper"
 requires-python = ">=3.8"
+dependencies = ["opencv-python>=4.5"]
 
 [tool.setuptools]
 packages = ["hcnet_thermal_picture"]

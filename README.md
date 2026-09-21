@@ -31,3 +31,19 @@ make
 from hcnet_thermal_picture import capture_picture
 jpeg = capture_picture()
 ```
+
+### 4. UVC 普通摄像头
+
+使用 OpenCV 通过 UVC 协议打开普通摄像头，采集一帧并返回 PNG 字节：
+
+```python
+from hcnet_thermal_picture import capture_uvc_picture
+
+png = capture_uvc_picture(
+    device=0,       # 也可以传入设备路径，例如 "/dev/video0"
+    width=640,
+    height=480,
+)
+```
+
+`device`、`width` 和 `height` 均可配置。函数只返回 PNG 图像字节，不在磁盘写文件。
