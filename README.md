@@ -9,7 +9,7 @@
 - 构建为跨平台静态库：Linux `libhcnet_thermal.a`、Windows `hcnet_thermal.lib`。
 - 提供稳定的 C ABI，Rust 可静态链接并同时操作两类摄像头。
 - 每个 handle 内部带互斥锁，同一 handle 上的抓图调用串行执行。
-- 抓图直接返回 JPEG 字节，不生成温度矩阵、CSV 或可见光图片，也不包含 HTTP 服务或设备配置接口。
+- 抓图直接返回 JPEG 字节，不生成温度矩阵。
 - `hcnet_thermal_cli` 是库的薄封装，提供 `thermal` 和 `uvc` 两个子命令。
 
 ## 1. 准备海康 SDK
