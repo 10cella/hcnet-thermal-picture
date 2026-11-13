@@ -7,10 +7,19 @@ name = "hcnet-thermal-picture"
 version = "0.1.0"
 description = "Hikvision thermal camera capture helper"
 requires-python = ">=3.8"
-dependencies = ["opencv-python>=4.5"]
+dependencies = []
+
+[project.optional-dependencies]
+uvc = ["opencv-python>=4.5"]
 
 [tool.setuptools]
 packages = ["hcnet_thermal_picture"]
 
 [tool.setuptools.package-data]
-hcnet_thermal_picture = ["*.so", "HCNetSDKCom/*.so"]
+hcnet_thermal_picture = [
+    "*.so",
+    "*.dylib",
+    "*.dll",
+    "HCNetSDKCom/*.so",
+    "HCNetSDKCom/*.dll",
+]

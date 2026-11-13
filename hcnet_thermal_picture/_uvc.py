@@ -3,8 +3,6 @@ from __future__ import annotations
 from os import PathLike
 from typing import Union
 
-import cv2
-
 
 Device = Union[int, str, PathLike[str]]
 
@@ -21,6 +19,8 @@ def capture_uvc_picture(
     """
     if width <= 0 or height <= 0:
         raise ValueError("width and height must be positive")
+
+    import cv2
 
     capture = cv2.VideoCapture(str(device) if isinstance(device, PathLike) else device)
     try:

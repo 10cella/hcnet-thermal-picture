@@ -3,9 +3,13 @@ __pycache__/
 *.py[codz]
 *$py.class
 
-# C extensions
+# C extensions and native libraries
 *.so
-hcnet_capture_cli
+*.a
+*.dylib
+*.dll
+*.lib
+hcnet_capture_example
 
 # Distribution / packaging
 .Python
@@ -218,4 +222,8 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-include
+# Hikvision SDK headers (keep the public library header tracked)
+include/*
+!include/hcnet_thermal.h
+
+Cargo.lock
