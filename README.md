@@ -12,7 +12,7 @@
 - 抓图直接返回 JPEG 字节，不生成温度矩阵。
 - `hcnet_thermal_cli` 是库的薄封装，提供 `thermal` 和 `uvc` 两个子命令。
 
-## 1. 准备海康 SDK
+### 1. 准备海康 SDK
 
 SDK 下载地址：
 
@@ -27,7 +27,7 @@ https://open.hikvision.com/download/5cda567cf47ae80dd41a54b3
 
 UVC 功能需要 OpenCV 4。Linux 用发行版包管理器安装，macOS 用 Homebrew，Windows 用 vcpkg 或 OpenCV 官方安装包。未安装 OpenCV 时库仍可构建，只是 UVC 不可用。
 
-## 2. 编译
+### 2. 编译
 
 项目只使用 CMake：
 
@@ -43,27 +43,13 @@ SDK 不在默认的 `include/`、`lib/` 时，通过 `HCNET_SDK_INCLUDE_DIR`、`
 - `build/libhcnet_thermal.a`（Windows 为 `hcnet_thermal.lib`）
 - `build/hcnet_thermal_cli`
 
-## 3. 使用
+### 3. 运行
 
 命令行程序提供两个子命令：
 
 - `thermal`：连接海康红外设备并抓取一张 JPEG，可指定地址、端口、账号、密码、通道、质量和输出文件。
 - `uvc`：从 UVC 摄像头抓取一张 JPEG，可指定设备索引或路径、分辨率、JPEG 质量和预热帧数。
 
-库的公共头文件是 `include/hcnet_thermal.h`，包含红外和 UVC 两组接口以及状态码。Rust 集成示例见 `examples/rust/`。
+库的公共头文件是 [hcnet_thermal.h](include/hcnet_thermal.h)，包含红外和 UVC 两组接口以及状态码。
 
-## 4. 注意事项
-
-- 设备是否支持 JPEG 抓图及分辨率取决于设备能力集。若返回错误 `23` 或 `29`，可调整编译选项 `HCNET_THERMAL_JPEG_PIC_SIZE`。
-- 登录会话可能因网络中断、设备重启或超时失效，长期运行的程序应在外层处理重连。
-- Windows 构建需要真实的 MSVC/MinGW 环境和对应的 SDK 库；使用 UVC 时还需将 OpenCV DLL 放在可执行文件同目录。
-
-## 目录结构
-
-```text
-include/hcnet_thermal.h   公共 C ABI
-src/                      红外与 UVC 实现
-cli/                      命令行程序
-examples/rust/            Rust 集成示例
-CMakeLists.txt            构建配置
-```
+[Rust 集成示例](examples/rust/)
