@@ -1,6 +1,6 @@
 //! Safe Rust wrappers around the `hcnet_thermal` C ABI.
 //!
-//! The crate links the static library built by the project's CMake/Make build
+//! The crate links the static library built by the project's CMake build
 //! and exposes handles for both camera types:
 //!
 //! - [`ThermalCamera`]: Hikvision thermal camera over the vendor SDK
