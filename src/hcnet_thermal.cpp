@@ -191,6 +191,11 @@ const char *hcnet_thermal_strerror(int status) {
         case HCNET_THERMAL_ERR_NOT_LOGGED_IN: return "handle is not logged in";
         case HCNET_THERMAL_ERR_OUT_OF_MEMORY: return "out of memory";
         case HCNET_THERMAL_ERR_LOGOUT: return "device logout failed";
+        case HCNET_THERMAL_ERR_UVC_UNAVAILABLE:
+            return "UVC support is not available (build with OpenCV)";
+        case HCNET_THERMAL_ERR_UVC_OPEN: return "unable to open UVC camera";
+        case HCNET_THERMAL_ERR_UVC_CAPTURE: return "UVC frame capture failed";
+        case HCNET_THERMAL_ERR_UVC_ENCODE: return "UVC JPEG encoding failed";
         default: return "unknown error";
     }
 }
