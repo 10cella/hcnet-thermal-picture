@@ -33,15 +33,15 @@ UVC 功能需要 OpenCV 4。Linux 用发行版包管理器安装，macOS 用 Hom
 
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --parallel
+cmake --build build --config Release --parallel
 ```
 
 SDK 不在默认的 `include/`、`lib/` 时，通过 `HCNET_SDK_INCLUDE_DIR`、`HCNET_SDK_LIB_DIR`、`HCNET_SDK_LIB_NAME` 指定。UVC 支持可用 `-DHCNET_THERMAL_ENABLE_UVC=OFF` 关闭。
 
 构建产物：
 
-- `build/libhcnet_thermal.a`（Windows 为 `hcnet_thermal.lib`）
-- `build/hcnet_thermal_cli`
+- `build/Release/libhcnet_thermal.a`（Windows 为 `hcnet_thermal.lib`）
+- `build/Release/hcnet_thermal_cli`
 
 ### 3. 运行
 
